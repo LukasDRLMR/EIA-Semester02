@@ -1,0 +1,22 @@
+p {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+	position: relative;
+	margin: 1em;
+	padding: 1em;
+	width: 200px;
+	background: #020058;
+	cursor: pointer;
+	border: none;
+	border-radius: 15px;
+	text-align: center;
+    color: white;
+}
+
+div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
