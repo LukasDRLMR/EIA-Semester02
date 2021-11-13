@@ -7,7 +7,7 @@ namespace L03_Sequenzsettings {
         let startButton: HTMLElement = <HTMLElement>document.getElementById("Start");
         startButton.addEventListener("click", startGame);
         let formular: HTMLElement = <HTMLElement>document.getElementById("formular");
-        formular.addEventListener("submit", function(e: Event) {e.preventDefault()});
+        formular.addEventListener("submit", function(e: Event) {e.preventDefault(); });
     }
 }
 
