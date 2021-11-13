@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>Sequenz Memory</title>
+</head>
+
+<body>
+    <form id="formular">
+        <div class="Settings">
+            <h2>Game-Settings</h2>
+            <fieldset>
+                <input type="range" name="Card-Size" min="0.2" max="1.8" step="0.1" value="1" />
+                <br>
+
+                <input type="color" name="BG-Color" id="BG-color" value="">
+                <input type="color" name="Card-Color" id="Card-color" value="">
+                <input type="color" name="Font-Color" id="Font-color" value="">
+                <br>
+
+                <select name="Font" id="selct">
+                    <optgroup label="Optgroup1"></optgroup>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+                    <option value="Courier New">Courier New</option>
+                </select>
+                <br>
+
+                <input type="radio" name="Time" value="easy" id="radio1">
+                <label for="radio1">Time 5 secs / letter</label>
+                <input type="radio" name="Time " value="medium" id="radio2">
+                <label for="radio2">Time 4 secs / letter</label>
+                <input type="radio" name="Time" value="hard" id="radio3">
+                <label for="radio3">Time 3 secs / letter</label>
+                <br>
+
+                <input type="text" name="Sequenz" list="options" placeholder="Sequenz">
+            </fieldset>
+            <button id="Start">Start</button>
+        </div>
+    </form>
+    <br>
+
+    <div class="Preview">
+        <!--Vorschau Spielkarte-->
+        <div class="Spielkarte">
+            <p class="Example">A</p>
+        </div>
+    </div>
+</body>
+
+</html>
