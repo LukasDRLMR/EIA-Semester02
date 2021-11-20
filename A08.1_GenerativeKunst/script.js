@@ -8,7 +8,7 @@ var L08_GenerativeKunst;
         let x = 0;
         for (let i = 0; i < 1000; i++) {
             for (let n = 0; n < 4; n++) {
-                let variable = (Math.random() * (1000 - -1000 + 1)) + -1000;
+                let variable = (Math.random() * (1500 - -1000 + 1)) + -1000;
                 array.push(variable);
             }
             x = x + 2;
