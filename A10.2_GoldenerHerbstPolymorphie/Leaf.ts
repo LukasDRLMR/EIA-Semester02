@@ -1,7 +1,5 @@
-namespace A08_2_GoldenerHerbst {
-    export class Leaf {
-        position: Vector;
-        velocity: Vector;
+namespace A10_2_GoldenerHerbst {
+    export class Leaf extends Moveable {
         type: number;
         size: number;
         color: string;
@@ -9,10 +7,10 @@ namespace A08_2_GoldenerHerbst {
         rotationChange: number;
         
         constructor() {
-            this.position = new Vector(0, 0);
+            super();
+
             this.position.randomY(0, crc2.canvas.height);
 
-            this.velocity = new Vector(0, 0);
             this.velocity.randomXY(100, 200);
 
             this.type = Math.floor(Math.random() * 3);
@@ -47,11 +45,11 @@ namespace A08_2_GoldenerHerbst {
             this.rotation += this.rotationChange * _timeslice;
 
             if (this.position.x > (crc2.canvas.width + 50)) {
-                leaves.splice(leaves.indexOf(this), 1);
+                moveables.splice(moveables.indexOf(this), 1);
                 drawLeaves();
             }
             if (this.position.y > (crc2.canvas.height + 50)) {
-                leaves.splice(leaves.indexOf(this), 1);
+                moveables.splice(moveables.indexOf(this), 1);
                 drawLeaves();
             }            
         }
