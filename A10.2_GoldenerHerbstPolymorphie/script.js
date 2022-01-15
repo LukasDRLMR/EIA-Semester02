@@ -1,8 +1,8 @@
 "use strict";
-// Aufgabe: L09.2 Goldener A08_2_GoldenerHerbst
+// Aufgabe: L10.2_GoldenerHerbst:Polymorphie
 // Name: Lukas Dirlmeier
 // Matrikelnummer: 268173
-// Datum: 11.12.2021
+// Datum: 03.01.2022
 var A10_2_GoldenerHerbst;
 (function (A10_2_GoldenerHerbst) {
     window.addEventListener("load", handleLoad);

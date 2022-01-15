@@ -1,9 +1,9 @@
-// Aufgabe: L10.2_GoldenerHerbst:Polymorphie
+// Aufgabe: L11.1:GoldenerHerbstAdvanced
 // Name: Lukas Dirlmeier
 // Matrikelnummer: 268173
-// Datum: 03.01.2022
+// Datum: 14.01.2022
 
-namespace A10_2_GoldenerHerbst {
+namespace A11_1_GoldenerHerbstAdvanced {
     interface Vector {
         x: number;
         y: number;
@@ -16,8 +16,14 @@ namespace A10_2_GoldenerHerbst {
     let golden: number = 0.66;
     export let gras: number = crc2.canvas.height * golden;
     export let moveables: Moveable[] = [];
+    export let nuts: Nut[] = [];
 
     let imgData: ImageData;
+
+    export enum TASK {
+        WAIT,
+        EAT
+    }
 
     function handleLoad(_event: Event): void {
         drawBG();
@@ -28,7 +34,8 @@ namespace A10_2_GoldenerHerbst {
         drawCloud();
         createPaths();
         drawLeaves();
-        drawSquirrel({ x: crc2.canvas.width / 2, y: gras });
+        drawSquirrel();
+        window.addEventListener("click", placeNut);
 
         window.setInterval(update, 50);
     }
@@ -142,14 +149,20 @@ namespace A10_2_GoldenerHerbst {
             let leaf: Leaf = new Leaf;
             moveables.push(leaf);
         } while (moveables.length < 9);
-            
+
     }
 
-    function drawSquirrel(_position: Vector): void {
+    function drawSquirrel(): void {
         for (let n: number = 0; n < 3; n++) {
             let squirrel: Squirrel = new Squirrel;
             moveables.push(squirrel);
         }
+    }
+
+    function placeNut(_e: MouseEvent): void {
+        let nut: Nut = new Nut;
+        nut.position = new Vector(_e.clientX, _e.clientY);
+        nuts.push(nut);
     }
 
     function update(): void {
@@ -158,6 +171,11 @@ namespace A10_2_GoldenerHerbst {
         for (let moveable of moveables) {
             moveable.move(1 / 50);
             moveable.draw();
+            
+        }
+
+        for (let nut of nuts) {
+            nut.draw();
         }
     }
 }
