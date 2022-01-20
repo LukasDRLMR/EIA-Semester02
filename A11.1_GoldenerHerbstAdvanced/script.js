@@ -27,8 +27,8 @@ var A11_1_GoldenerHerbstAdvanced;
         drawCloud();
         A11_1_GoldenerHerbstAdvanced.createPaths();
         drawLeaves();
-        drawSquirrel();
-        window.addEventListener("click", placeNut);
+        drawSquirrel(3);
+        canvas.addEventListener("click", placeNut);
         window.setInterval(update, 50);
     }
     function drawBG() {
@@ -120,16 +120,23 @@ var A11_1_GoldenerHerbstAdvanced;
         } while (A11_1_GoldenerHerbstAdvanced.moveables.length < 9);
     }
     A11_1_GoldenerHerbstAdvanced.drawLeaves = drawLeaves;
-    function drawSquirrel() {
-        for (let n = 0; n < 3; n++) {
+    function drawSquirrel(_n) {
+        for (let n = 0; n < _n; n++) {
             let squirrel = new A11_1_GoldenerHerbstAdvanced.Squirrel;
             A11_1_GoldenerHerbstAdvanced.moveables.push(squirrel);
         }
     }
+    A11_1_GoldenerHerbstAdvanced.drawSquirrel = drawSquirrel;
     function placeNut(_e) {
-        let nut = new A11_1_GoldenerHerbstAdvanced.Nut;
-        nut.position = new A11_1_GoldenerHerbstAdvanced.Vector(_e.clientX, _e.clientY);
+        let nut = new A11_1_GoldenerHerbstAdvanced.Nut(_e.clientX, _e.clientY);
         A11_1_GoldenerHerbstAdvanced.nuts.push(nut);
+    }
+    function deleteNuts() {
+        for (let i = A11_1_GoldenerHerbstAdvanced.nuts.length - 1; i >= 0; i--) {
+            if (A11_1_GoldenerHerbstAdvanced.nuts[i].eaten) {
+                A11_1_GoldenerHerbstAdvanced.nuts.splice(i, 1);
+            }
+        }
     }
     function update() {
         A11_1_GoldenerHerbstAdvanced.crc2.putImageData(imgData, 0, 0);
@@ -138,8 +145,10 @@ var A11_1_GoldenerHerbstAdvanced;
             moveable.draw();
         }
         for (let nut of A11_1_GoldenerHerbstAdvanced.nuts) {
+            nut.move(1 / 5);
             nut.draw();
         }
+        deleteNuts();
     }
 })(A11_1_GoldenerHerbstAdvanced || (A11_1_GoldenerHerbstAdvanced = {}));
 //# sourceMappingURL=script.js.map

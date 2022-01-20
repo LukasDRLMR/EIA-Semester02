@@ -34,8 +34,8 @@ namespace A11_1_GoldenerHerbstAdvanced {
         drawCloud();
         createPaths();
         drawLeaves();
-        drawSquirrel();
-        window.addEventListener("click", placeNut);
+        drawSquirrel(3);
+        canvas.addEventListener("click", placeNut);
 
         window.setInterval(update, 50);
     }
@@ -152,17 +152,24 @@ namespace A11_1_GoldenerHerbstAdvanced {
 
     }
 
-    function drawSquirrel(): void {
-        for (let n: number = 0; n < 3; n++) {
+    export function drawSquirrel(_n: number): void {
+        for (let n: number = 0; n < _n; n++) {
             let squirrel: Squirrel = new Squirrel;
             moveables.push(squirrel);
         }
     }
 
     function placeNut(_e: MouseEvent): void {
-        let nut: Nut = new Nut;
-        nut.position = new Vector(_e.clientX, _e.clientY);
+        let nut: Nut = new Nut(_e.clientX, _e.clientY);
         nuts.push(nut);
+    }
+
+    function deleteNuts(): void {
+        for (let i: number = nuts.length - 1; i >= 0; i--) {
+            if (nuts[i].eaten) {
+                nuts.splice(i, 1);
+            }
+        }
     }
 
     function update(): void {
@@ -171,11 +178,13 @@ namespace A11_1_GoldenerHerbstAdvanced {
         for (let moveable of moveables) {
             moveable.move(1 / 50);
             moveable.draw();
-            
         }
 
         for (let nut of nuts) {
+            nut.move(1 / 5);
             nut.draw();
         }
+
+        deleteNuts();
     }
 }

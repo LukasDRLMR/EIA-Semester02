@@ -1,16 +1,37 @@
 namespace A11_1_GoldenerHerbstAdvanced {
-    export class Nut {
+    export class Nut extends Moveable {
         public targeted: boolean;
         public eaten: boolean;
+        public readyToBeEaten: boolean;
         public position: Vector;
+        protected stop: number;
 
-        constructor() {
+        constructor(clientX: number, clientY: number) {
+            super();
+
             this.targeted = false;
             this.eaten = false;
+            this.position = new Vector(clientX, clientY);
+            this.stop = Math.floor(Math.random() * (crc2.canvas.height - (gras - 20)) + (gras - 20));
+            if (clientY < gras) {
+                this.readyToBeEaten = false;
+            } else {
+                this.readyToBeEaten = true;
+            }
         }
 
-        public fall(_timeslice: number): void {
-            //
+        public move(_timeslice: number): void {
+            if (this.readyToBeEaten == false) {
+                if (this.position.y < this.stop) {
+                    this.velocity = Vector.randomY(50, 100);
+                    let offset: Vector = this.velocity.copy();
+                    offset.scale(_timeslice);
+                    this.position.add(offset);
+                }
+                if (this.position.y > this.stop) {
+                    this.readyToBeEaten = true;
+                }
+            }
         }
 
         public draw(): void {
@@ -32,4 +53,4 @@ namespace A11_1_GoldenerHerbstAdvanced {
             crc2.restore();
         }
     }
-}
+} 

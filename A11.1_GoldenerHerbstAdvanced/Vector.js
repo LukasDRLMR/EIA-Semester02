@@ -29,6 +29,12 @@ var A11_1_GoldenerHerbstAdvanced;
             vector.setx(lenght);
             return vector;
         }
+        static getDifference(_v0, _v1) {
+            return new Vector(_v0.x - _v1.x, _v0.y - _v1.y);
+        }
+        get lenght() {
+            return Math.hypot(this.x, this.y);
+        }
         set(_x, _y) {
             this.x = _x;
             this.y = _y;

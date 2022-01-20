@@ -1,13 +1,32 @@
 "use strict";
 var A11_1_GoldenerHerbstAdvanced;
 (function (A11_1_GoldenerHerbstAdvanced) {
-    class Nut {
-        constructor() {
+    class Nut extends A11_1_GoldenerHerbstAdvanced.Moveable {
+        constructor(clientX, clientY) {
+            super();
             this.targeted = false;
             this.eaten = false;
+            this.position = new A11_1_GoldenerHerbstAdvanced.Vector(clientX, clientY);
+            this.stop = Math.floor(Math.random() * (A11_1_GoldenerHerbstAdvanced.crc2.canvas.height - (A11_1_GoldenerHerbstAdvanced.gras - 20)) + (A11_1_GoldenerHerbstAdvanced.gras - 20));
+            if (clientY < A11_1_GoldenerHerbstAdvanced.gras) {
+                this.readyToBeEaten = false;
+            }
+            else {
+                this.readyToBeEaten = true;
+            }
         }
-        fall(_timeslice) {
-            //
+        move(_timeslice) {
+            if (this.readyToBeEaten == false) {
+                if (this.position.y < this.stop) {
+                    this.velocity = A11_1_GoldenerHerbstAdvanced.Vector.randomY(50, 100);
+                    let offset = this.velocity.copy();
+                    offset.scale(_timeslice);
+                    this.position.add(offset);
+                }
+                if (this.position.y > this.stop) {
+                    this.readyToBeEaten = true;
+                }
+            }
         }
         draw() {
             A11_1_GoldenerHerbstAdvanced.crc2.save();
