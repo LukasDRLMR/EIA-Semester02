@@ -6,26 +6,28 @@ var A11_1_GoldenerHerbstAdvanced;
             super();
             this.position = new A11_1_GoldenerHerbstAdvanced.Vector(A11_1_GoldenerHerbstAdvanced.Vector.random(A11_1_GoldenerHerbstAdvanced.crc2.canvas.width, 0), A11_1_GoldenerHerbstAdvanced.Vector.random(A11_1_GoldenerHerbstAdvanced.crc2.canvas.height, A11_1_GoldenerHerbstAdvanced.gras));
             this.task = A11_1_GoldenerHerbstAdvanced.TASK.WAIT;
-            this.size = 1;
+            this.bellysize = 1;
         }
         move(_timeslice, _position) {
-            super.move(_timeslice);
-            if (Math.random() < 0.05 && !_position && this.task == A11_1_GoldenerHerbstAdvanced.TASK.WAIT && this.size < 1.5) {
-                this.velocity = new A11_1_GoldenerHerbstAdvanced.Vector(A11_1_GoldenerHerbstAdvanced.Vector.random(-200, 200) / this.size, A11_1_GoldenerHerbstAdvanced.Vector.random(-200, 200) / this.size);
-            }
-            if (this.position.y <= A11_1_GoldenerHerbstAdvanced.gras) {
-                this.velocity = new A11_1_GoldenerHerbstAdvanced.Vector(this.velocity.x, A11_1_GoldenerHerbstAdvanced.Vector.random(0, 200));
-            }
-            if (this.position.y > A11_1_GoldenerHerbstAdvanced.crc2.canvas.height - 10) {
-                this.velocity = new A11_1_GoldenerHerbstAdvanced.Vector(this.velocity.x, A11_1_GoldenerHerbstAdvanced.Vector.random(-200, 0));
-            }
-            if (A11_1_GoldenerHerbstAdvanced.nuts.length > 0) {
-                this.takeAttention();
+            if (this.bellysize <= 5) {
+                super.move(_timeslice);
+                if (Math.random() < 0.05 && !_position && this.task == A11_1_GoldenerHerbstAdvanced.TASK.WAIT && this.bellysize < 5) {
+                    this.velocity = new A11_1_GoldenerHerbstAdvanced.Vector(A11_1_GoldenerHerbstAdvanced.Vector.random(-200, 200) / this.bellysize, A11_1_GoldenerHerbstAdvanced.Vector.random(-200, 200) / this.bellysize);
+                }
+                if (this.position.y <= A11_1_GoldenerHerbstAdvanced.gras) {
+                    this.velocity = new A11_1_GoldenerHerbstAdvanced.Vector(this.velocity.x, A11_1_GoldenerHerbstAdvanced.Vector.random(0, 200));
+                }
+                if (this.position.y > A11_1_GoldenerHerbstAdvanced.crc2.canvas.height - 10) {
+                    this.velocity = new A11_1_GoldenerHerbstAdvanced.Vector(this.velocity.x, A11_1_GoldenerHerbstAdvanced.Vector.random(-200, 0));
+                }
+                if (A11_1_GoldenerHerbstAdvanced.nuts.length > 0) {
+                    this.takeAttention();
+                }
             }
         }
         takeAttention() {
             for (let i = 0; i < A11_1_GoldenerHerbstAdvanced.nuts.length; i++) {
-                let distance = new A11_1_GoldenerHerbstAdvanced.Vector(A11_1_GoldenerHerbstAdvanced.nuts[i].position.x - this.position.x, A11_1_GoldenerHerbstAdvanced.nuts[i].position.y - this.position.y).lenght;
+                let distance = new A11_1_GoldenerHerbstAdvanced.Vector(A11_1_GoldenerHerbstAdvanced.nuts[i].position.x - this.position.x, A11_1_GoldenerHerbstAdvanced.nuts[i].position.y - this.position.y).length;
                 if (this.task == A11_1_GoldenerHerbstAdvanced.TASK.WAIT) {
                     if (A11_1_GoldenerHerbstAdvanced.nuts[i].readyToBeEaten == true) {
                         if (A11_1_GoldenerHerbstAdvanced.nuts[i].targeted == false) {
@@ -40,13 +42,13 @@ var A11_1_GoldenerHerbstAdvanced;
                         this.velocity = new A11_1_GoldenerHerbstAdvanced.Vector(0, 0);
                         A11_1_GoldenerHerbstAdvanced.nuts[i].eaten = true;
                         this.task = A11_1_GoldenerHerbstAdvanced.TASK.WAIT;
-                        this.size += 0.1;
+                        this.bellysize += 1;
                     }
                 }
             }
         }
         draw() {
-            if (this.size > 1.5) {
+            if (this.bellysize > 5) {
                 A11_1_GoldenerHerbstAdvanced.crc2.save();
                 A11_1_GoldenerHerbstAdvanced.crc2.translate(this.position.x - 30, this.position.y - 50);
                 A11_1_GoldenerHerbstAdvanced.crc2.scale(0.2, 0.2);
@@ -87,9 +89,9 @@ var A11_1_GoldenerHerbstAdvanced;
                 if (this.velocity.x > 0)
                     A11_1_GoldenerHerbstAdvanced.crc2.scale(-1, 1);
                 A11_1_GoldenerHerbstAdvanced.crc2.beginPath();
-                A11_1_GoldenerHerbstAdvanced.crc2.ellipse(0, 0, this.size * 50, 75, Math.PI * 0.9, 0, 2 * Math.PI);
+                A11_1_GoldenerHerbstAdvanced.crc2.ellipse(0, 0, (this.bellysize / 10 + 1) * 50, 75, Math.PI * 0.9, 0, 2 * Math.PI);
                 A11_1_GoldenerHerbstAdvanced.crc2.closePath();
-                A11_1_GoldenerHerbstAdvanced.crc2.fillStyle = "rgb(" + this.size * 122 + ", 63, 0)";
+                A11_1_GoldenerHerbstAdvanced.crc2.fillStyle = "rgb(" + (this.bellysize / 10 + 1) * 122 + ", 63, 0)";
                 A11_1_GoldenerHerbstAdvanced.crc2.fill();
                 A11_1_GoldenerHerbstAdvanced.crc2.translate(-40, -75);
                 A11_1_GoldenerHerbstAdvanced.crc2.beginPath();
@@ -140,7 +142,7 @@ var A11_1_GoldenerHerbstAdvanced;
             }
         }
         plop() {
-            this.size = 1;
+            this.bellysize = 1;
             // moveables.splice(moveables.indexOf(this), 1);
             // drawSquirrel(1);
         }

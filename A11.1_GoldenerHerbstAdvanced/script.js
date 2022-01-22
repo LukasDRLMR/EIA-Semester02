@@ -1,8 +1,8 @@
 "use strict";
-// Aufgabe: L11.1:GoldenerHerbstAdvanced
+// Aufgabe: L11.2:GoldenerHerbstAdvanced
 // Name: Lukas Dirlmeier
 // Matrikelnummer: 268173
-// Datum: 14.01.2022
+// Datum: 22.01.2022
 var A11_1_GoldenerHerbstAdvanced;
 (function (A11_1_GoldenerHerbstAdvanced) {
     window.addEventListener("load", handleLoad);
@@ -20,10 +20,10 @@ var A11_1_GoldenerHerbstAdvanced;
     })(TASK = A11_1_GoldenerHerbstAdvanced.TASK || (A11_1_GoldenerHerbstAdvanced.TASK = {}));
     function handleLoad(_event) {
         drawBG();
-        drawSun({ x: 100, y: 100 });
-        drawMountains({ x: 0, y: A11_1_GoldenerHerbstAdvanced.gras }, 75, 200, "grey", "white");
-        drawMountains({ x: 0, y: A11_1_GoldenerHerbstAdvanced.gras }, 50, 150, "rgba(70, 70, 70)", "rgba(200, 200, 200)");
-        drawTrees({ x: 0, y: A11_1_GoldenerHerbstAdvanced.gras }, { x: 20, y: 100 });
+        drawSun(new A11_1_GoldenerHerbstAdvanced.Vector(100, 100));
+        drawMountains(new A11_1_GoldenerHerbstAdvanced.Vector(0, A11_1_GoldenerHerbstAdvanced.gras), 75, 200, "grey", "white");
+        drawMountains(new A11_1_GoldenerHerbstAdvanced.Vector(0, A11_1_GoldenerHerbstAdvanced.gras), 50, 150, "rgba(70, 70, 70)", "rgba(200, 200, 200)");
+        drawTrees(new A11_1_GoldenerHerbstAdvanced.Vector(0, A11_1_GoldenerHerbstAdvanced.gras), new A11_1_GoldenerHerbstAdvanced.Vector(20, 100));
         drawCloud();
         A11_1_GoldenerHerbstAdvanced.createPaths();
         drawLeaves();

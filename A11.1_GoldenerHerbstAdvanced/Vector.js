@@ -32,7 +32,7 @@ var A11_1_GoldenerHerbstAdvanced;
         static getDifference(_v0, _v1) {
             return new Vector(_v0.x - _v1.x, _v0.y - _v1.y);
         }
-        get lenght() {
+        get length() {
             return Math.hypot(this.x, this.y);
         }
         set(_x, _y) {

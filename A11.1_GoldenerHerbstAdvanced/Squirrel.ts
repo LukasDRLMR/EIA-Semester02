@@ -1,6 +1,6 @@
 namespace A11_1_GoldenerHerbstAdvanced {
     export class Squirrel extends Moveable {
-        public size: number;
+        public bellysize: number;
         private task: TASK;
 
         constructor() {
@@ -8,28 +8,30 @@ namespace A11_1_GoldenerHerbstAdvanced {
 
             this.position = new Vector(Vector.random(crc2.canvas.width, 0), Vector.random(crc2.canvas.height, gras));
             this.task = TASK.WAIT;
-            this.size = 1;
+            this.bellysize = 1;
         }
 
         public move(_timeslice: number, _position?: Vector): void {
-            super.move(_timeslice);
-            if (Math.random() < 0.05 && !_position && this.task == TASK.WAIT && this.size < 1.5) {
-                this.velocity = new Vector(Vector.random(-200, 200) / this.size, Vector.random(-200, 200) / this.size);
-            }
-            if (this.position.y <= gras) {
-                this.velocity = new Vector(this.velocity.x, Vector.random(0, 200));
-            }
-            if (this.position.y > crc2.canvas.height - 10) {
-                this.velocity = new Vector(this.velocity.x, Vector.random(-200, 0));
-            }
-            if (nuts.length > 0) {
-                this.takeAttention();
+            if (this.bellysize <= 5) {
+                super.move(_timeslice);
+                if (Math.random() < 0.05 && !_position && this.task == TASK.WAIT && this.bellysize < 5) {
+                    this.velocity = new Vector(Vector.random(-200, 200) / this.bellysize, Vector.random(-200, 200) / this.bellysize);
+                }
+                if (this.position.y <= gras) {
+                    this.velocity = new Vector(this.velocity.x, Vector.random(0, 200));
+                }
+                if (this.position.y > crc2.canvas.height - 10) {
+                    this.velocity = new Vector(this.velocity.x, Vector.random(-200, 0));
+                }
+                if (nuts.length > 0) {
+                    this.takeAttention();
+                }
             }
         }
 
         public takeAttention(): void {
             for (let i: number = 0; i < nuts.length; i++) {
-                let distance: number = new Vector(nuts[i].position.x - this.position.x, nuts[i].position.y - this.position.y).lenght;
+                let distance: number = new Vector(nuts[i].position.x - this.position.x, nuts[i].position.y - this.position.y).length;
                 if (this.task == TASK.WAIT) {
                     if (nuts[i].readyToBeEaten == true) {
                         if (nuts[i].targeted == false) {
@@ -44,14 +46,14 @@ namespace A11_1_GoldenerHerbstAdvanced {
                         this.velocity = new Vector(0, 0);
                         nuts[i].eaten = true;
                         this.task = TASK.WAIT;
-                        this.size += 0.1;
+                        this.bellysize += 1;
                     }
                 }
             }
         }
 
         public draw(): void {
-            if (this.size > 1.5) {
+            if (this.bellysize > 5) {
                 crc2.save();
                 crc2.translate(this.position.x - 30, this.position.y - 50);
                 crc2.scale(0.2, 0.2);
@@ -93,9 +95,9 @@ namespace A11_1_GoldenerHerbstAdvanced {
                     crc2.scale(-1, 1);
 
                 crc2.beginPath();
-                crc2.ellipse(0, 0, this.size * 50, 75, Math.PI * 0.9, 0, 2 * Math.PI);
+                crc2.ellipse(0, 0, (this.bellysize / 10 + 1) * 50, 75, Math.PI * 0.9, 0, 2 * Math.PI);
                 crc2.closePath();
-                crc2.fillStyle = "rgb(" + this.size * 122 + ", 63, 0)";
+                crc2.fillStyle = "rgb(" + (this.bellysize / 10 + 1) * 122 + ", 63, 0)";
                 crc2.fill();
 
                 crc2.translate(-40, -75);
@@ -154,7 +156,7 @@ namespace A11_1_GoldenerHerbstAdvanced {
         }
 
         public plop(): void {
-            this.size = 1;
+            this.bellysize = 1;
             // moveables.splice(moveables.indexOf(this), 1);
             // drawSquirrel(1);
         }

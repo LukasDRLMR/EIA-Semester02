@@ -1,13 +1,9 @@
-// Aufgabe: L11.1:GoldenerHerbstAdvanced
+// Aufgabe: L11.2:GoldenerHerbstAdvanced
 // Name: Lukas Dirlmeier
 // Matrikelnummer: 268173
-// Datum: 14.01.2022
+// Datum: 22.01.2022
 
 namespace A11_1_GoldenerHerbstAdvanced {
-    interface Vector {
-        x: number;
-        y: number;
-    }
 
     window.addEventListener("load", handleLoad);
     export let crc2: CanvasRenderingContext2D;
@@ -27,10 +23,10 @@ namespace A11_1_GoldenerHerbstAdvanced {
 
     function handleLoad(_event: Event): void {
         drawBG();
-        drawSun({ x: 100, y: 100 });
-        drawMountains({ x: 0, y: gras }, 75, 200, "grey", "white");
-        drawMountains({ x: 0, y: gras }, 50, 150, "rgba(70, 70, 70)", "rgba(200, 200, 200)");
-        drawTrees({ x: 0, y: gras }, { x: 20, y: 100 });
+        drawSun(new Vector(100, 100));
+        drawMountains(new Vector(0, gras), 75, 200, "grey", "white");
+        drawMountains(new Vector(0, gras), 50, 150, "rgba(70, 70, 70)", "rgba(200, 200, 200)");
+        drawTrees(new Vector(0, gras), new Vector(20, 100));
         drawCloud();
         createPaths();
         drawLeaves();

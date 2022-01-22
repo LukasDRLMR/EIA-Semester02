@@ -40,7 +40,7 @@ namespace A11_1_GoldenerHerbstAdvanced {
             return new Vector(_v0.x - _v1.x, _v0.y - _v1.y);
         }
 
-        public get lenght(): number {
+        public get length(): number {
             return Math.hypot(this.x, this.y);
         }
 

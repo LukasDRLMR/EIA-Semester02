@@ -6,6 +6,7 @@ namespace A11_1_GoldenerHerbstAdvanced {
 
             this.position = new Vector(0, 100);
             this.velocity = Vector.randomX(100, 200);
+
         }
 
         public draw(): void {
