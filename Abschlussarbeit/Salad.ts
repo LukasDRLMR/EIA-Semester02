@@ -4,37 +4,56 @@ namespace Endabgabe {
         constructor() {
             super();
 
-            this.position = new Vector(1120, 200);
+            this.positionPrep = new Vector(1120, 200);
             this.positionDisplay = new Vector(1190, 150);
-            this.capacity = 4;
+            this.positionMat = new Vector(120, 210);
+            this.capacity = 5;
         }
 
         public draw(): void {
             crc2.save();
             crc2.beginPath();
-            this.path.arc(this.position.x, this.position.y, 40, 0, 2 * Math.PI);
+            this.path.arc(this.positionPrep.x, this.positionPrep.y, 40, 0, 2 * Math.PI);
             crc2.closePath();
             crc2.fillStyle = "rgb(0, 200, 100)";
             crc2.fill(this.path);
             crc2.stroke(this.path);
             crc2.fillStyle = "black";
-            crc2.fillText("Salad", this.position.x + 25, this.position.y + 45);
+            crc2.fillText("Salat", this.positionPrep.x + 25, this.positionPrep.y + 45);
+            crc2.closePath();
+            crc2.restore();
+
+            crc2.save();
+            crc2.beginPath();
+            this.pathGround.arc(this.positionMat.x, this.positionMat.y, 40, 0, 2 * Math.PI);
+            crc2.closePath();
+            crc2.fillStyle = "rgb(0, 200, 100)";
+            crc2.fill(this.pathGround);
+            crc2.stroke(this.pathGround);
+            crc2.closePath();
             crc2.restore();
             
             crc2.save();
             crc2.strokeStyle = "white";
-            crc2.fillStyle = "white";
+            crc2.fillStyle = "rgb(70, 70, 70)";
             crc2.translate(this.positionDisplay.x, this.positionDisplay.y);
             crc2.strokeRect(0, 0, 10, 100);
             crc2.fillRect(0, 0, 10, 100);
-            crc2.fillStyle = "rgb(70, 70, 70)";
-            crc2.fillRect(0, 0, 10, 20 * this.capacity);
+            crc2.fillStyle = "white";
+            crc2.fillRect(0, 100, 10, -20 * this.capacity);
             crc2.restore();
         }
 
-        public clicked(): void {
-            super.clicked();
-            console.log("Test");
+        public clicked(_object: number): void {
+            if (this.capacity > 0) {
+                super.clicked(_object);
+                if (_object == 1) {
+                    order.push("Salad");
+                }
+                if (_object == 2) {
+                    console.log("Salad in Work");
+                }
+            }
         }
     }
 }

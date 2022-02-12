@@ -6,7 +6,7 @@ namespace Endabgabe {
 
             this.position = new Vector(805, 80);
             this.positionDisplay = new Vector(870, 40);
-            this.capacity = 4;
+            this.capacity = 10;
         }
 
         public draw(): void {
@@ -23,17 +23,20 @@ namespace Endabgabe {
 
             crc2.save();
             crc2.strokeStyle = "white";
-            crc2.fillStyle = "white";
+            crc2.fillStyle = "rgb(70, 70, 70)";
             crc2.translate(this.positionDisplay.x, this.positionDisplay.y);
             crc2.strokeRect(0, 0, 10, 100);
             crc2.fillRect(0, 0, 10, 100);
-            crc2.fillStyle = "rgb(70, 70, 70)";
-            crc2.fillRect(0, 0, 10, 20 * this.capacity);
+            crc2.fillStyle = "white";
+            crc2.fillRect(0, 100, 10, -10 * this.capacity);
             crc2.restore();
         }
 
-        public clicked(): void {
-            super.clicked();
+        public clicked(_object: number): void {
+            if (this.capacity > 0) {
+                super.clicked(_object);
+                order.push("Lahmacun");
+            }
         }
     }
 }
