@@ -14,7 +14,7 @@ var Endabgabe;
         clicked() {
             //
         }
-        work() {
+        work(_Pos) {
             //
         }
     }

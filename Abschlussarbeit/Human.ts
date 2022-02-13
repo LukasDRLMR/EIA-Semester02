@@ -1,6 +1,7 @@
 namespace Endabgabe {
     export abstract class Human {
         public path: Path2D = new Path2D();
+        public state: WORKSTATE;
         protected position: Vector;
         protected velocity: Vector;
 
@@ -21,7 +22,7 @@ namespace Endabgabe {
             //
         }
 
-        public work(): void {
+        public work(_Pos?: Vector): void {
             //
         }
     }

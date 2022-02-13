@@ -49,6 +49,11 @@ namespace Endabgabe {
                 super.clicked(_object);
                 if (_object == 1) {
                     order.push("Salad");
+                    for (let l: number = 0; l < staffs.length; l++) {
+                        if (staffs[l].state == WORKSTATE.TOPPING) {
+                            staffs[l].work(this.positionPrep);
+                        }
+                    }
                 }
                 if (_object == 2) {
                     console.log("Salad in Work");

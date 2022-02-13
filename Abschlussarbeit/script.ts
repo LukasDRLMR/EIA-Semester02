@@ -11,10 +11,16 @@ namespace Endabgabe {
     }
 
     export enum WORKSTATE {
-        PAUSE,
         CASH,
-        PREPARATION,
-        TOPPING
+        TOPPING,
+        PAUSE,
+        PREPARATION
+    }
+
+    export enum STAFFSTATE {
+        WORKING,
+        SLEEPING,
+        STRESSED
     }
 
     window.addEventListener("load", handleLoad);
@@ -26,7 +32,7 @@ namespace Endabgabe {
     let imgData: ImageData;
     let staffCount: number = 3;
 
-    export let humans: Human[] = [];
+    export let staffs: Staff[] = [];
     export let ingredients: Food[] = [];
     export let order: string[] = [];
 
@@ -94,10 +100,10 @@ namespace Endabgabe {
         let build: Build = new Build;
         ingredients.push(döner, yufka, lahmacun, salad, cabbage, onion, tomato, sauce, hot, meat, build);
 
-        // for (let i: number = 1; i <= staffCount; i++) {
-        let human: Staff = new Staff;
-        humans.push(human);
-        // }
+        for (let i: number = 1; i <= staffCount; i++) {
+        let staff: Staff = new Staff;
+        staffs.push(staff);
+        }
     }
 
     function Action(): void {
@@ -111,10 +117,10 @@ namespace Endabgabe {
                 }
             });
         }
-        for (let human of humans) {
+        for (let staff of staffs) {
             canvas.addEventListener("click", function (_event: MouseEvent): void {
-                if (crc2.isPointInPath(human.path, _event.offsetX, _event.offsetY)) {
-                    human.clicked();
+                if (crc2.isPointInPath(staff.path, _event.offsetX, _event.offsetY)) {
+                    staff.clicked();
                 }
             });
         }
@@ -127,10 +133,10 @@ namespace Endabgabe {
             food.draw();
         }
 
-        for (let human of humans) {
-            human.move(1 / 50);
-            human.work();
-            human.draw();
+        for (let staff of staffs) {
+            staff.move(1 / 50);
+            staff.work();
+            staff.draw();
         }
     }
 }

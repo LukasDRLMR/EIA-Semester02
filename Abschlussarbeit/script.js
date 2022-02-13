@@ -12,17 +12,23 @@ var Endabgabe;
     })(GAMESTATE = Endabgabe.GAMESTATE || (Endabgabe.GAMESTATE = {}));
     let WORKSTATE;
     (function (WORKSTATE) {
-        WORKSTATE[WORKSTATE["PAUSE"] = 0] = "PAUSE";
-        WORKSTATE[WORKSTATE["CASH"] = 1] = "CASH";
-        WORKSTATE[WORKSTATE["PREPARATION"] = 2] = "PREPARATION";
-        WORKSTATE[WORKSTATE["TOPPING"] = 3] = "TOPPING";
+        WORKSTATE[WORKSTATE["CASH"] = 0] = "CASH";
+        WORKSTATE[WORKSTATE["TOPPING"] = 1] = "TOPPING";
+        WORKSTATE[WORKSTATE["PAUSE"] = 2] = "PAUSE";
+        WORKSTATE[WORKSTATE["PREPARATION"] = 3] = "PREPARATION";
     })(WORKSTATE = Endabgabe.WORKSTATE || (Endabgabe.WORKSTATE = {}));
+    let STAFFSTATE;
+    (function (STAFFSTATE) {
+        STAFFSTATE[STAFFSTATE["WORKING"] = 0] = "WORKING";
+        STAFFSTATE[STAFFSTATE["SLEEPING"] = 1] = "SLEEPING";
+        STAFFSTATE[STAFFSTATE["STRESSED"] = 2] = "STRESSED";
+    })(STAFFSTATE = Endabgabe.STAFFSTATE || (Endabgabe.STAFFSTATE = {}));
     window.addEventListener("load", handleLoad);
     let canvas = document.querySelector("canvas");
     Endabgabe.crc2 = canvas.getContext("2d");
     let imgData;
     let staffCount = 3;
-    Endabgabe.humans = [];
+    Endabgabe.staffs = [];
     Endabgabe.ingredients = [];
     Endabgabe.order = [];
     function handleLoad() {
@@ -79,10 +85,10 @@ var Endabgabe;
         let meat = new Endabgabe.Meat;
         let build = new Endabgabe.Build;
         Endabgabe.ingredients.push(döner, yufka, lahmacun, salad, cabbage, onion, tomato, sauce, hot, meat, build);
-        // for (let i: number = 1; i <= staffCount; i++) {
-        let human = new Endabgabe.Staff;
-        Endabgabe.humans.push(human);
-        // }
+        for (let i = 1; i <= staffCount; i++) {
+            let staff = new Endabgabe.Staff;
+            Endabgabe.staffs.push(staff);
+        }
     }
     function Action() {
         for (let item of Endabgabe.ingredients) {
@@ -95,10 +101,10 @@ var Endabgabe;
                 }
             });
         }
-        for (let human of Endabgabe.humans) {
+        for (let staff of Endabgabe.staffs) {
             canvas.addEventListener("click", function (_event) {
-                if (Endabgabe.crc2.isPointInPath(human.path, _event.offsetX, _event.offsetY)) {
-                    human.clicked();
+                if (Endabgabe.crc2.isPointInPath(staff.path, _event.offsetX, _event.offsetY)) {
+                    staff.clicked();
                 }
             });
         }
@@ -108,10 +114,10 @@ var Endabgabe;
         for (let food of Endabgabe.ingredients) {
             food.draw();
         }
-        for (let human of Endabgabe.humans) {
-            human.move(1 / 50);
-            human.work();
-            human.draw();
+        for (let staff of Endabgabe.staffs) {
+            staff.move(1 / 50);
+            staff.work();
+            staff.draw();
         }
     }
 })(Endabgabe || (Endabgabe = {}));
