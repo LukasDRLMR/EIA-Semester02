@@ -3,7 +3,6 @@ namespace Endabgabe {
         public state: WORKSTATE;
         public mood: STAFFSTATE;
         public targeted: boolean;
-        private onMyWay: boolean;
         private pauseStation: Vector;
         private cashStation: Vector;
         private prepStation: Vector;
@@ -63,6 +62,9 @@ namespace Endabgabe {
                 }
             }
             this.targeted = true;
+            setTimeout((): void => {
+                this.targeted = false;
+            },         5000);
         }
 
         public work(_Pos?: Vector): void {
