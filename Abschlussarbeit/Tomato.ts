@@ -8,6 +8,7 @@ namespace Endabgabe {
             this.positionDisplay = new Vector(1190, 540);
             this.positionMat = new Vector(120, 660);
             this.capacity = 5;
+            this.maxCapacity = 5;
         }
 
         public draw(): void {

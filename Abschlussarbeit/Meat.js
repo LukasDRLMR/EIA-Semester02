@@ -7,6 +7,7 @@ var Endabgabe;
             this.position = new Endabgabe.Vector(960, 80);
             this.positionDisplay = new Endabgabe.Vector(1030, 40);
             this.capacity = 20;
+            this.maxCapacity = 20;
         }
         draw() {
             Endabgabe.crc2.save();
@@ -38,4 +39,4 @@ var Endabgabe;
     }
     Endabgabe.Meat = Meat;
 })(Endabgabe || (Endabgabe = {}));
-//# sourceMappingURL=meat.js.map
+//# sourceMappingURL=Meat.js.map

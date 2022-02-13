@@ -11,6 +11,11 @@ namespace Endabgabe {
             return new Vector(_v0.x - _v1.x, _v0.y - _v1.y);
         }
 
+        public static random(_min: number, _max: number): number {
+            let value: number = Math.random() * (_max - _min)  + _min;
+            return value;
+        }
+
         public set(_x: number, _y: number): void {
             this.x = _x;
             this.y = _y;

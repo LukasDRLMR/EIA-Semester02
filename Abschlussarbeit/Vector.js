@@ -8,6 +8,10 @@ var Endabgabe;
         static getDifference(_v0, _v1) {
             return new Vector(_v0.x - _v1.x, _v0.y - _v1.y);
         }
+        static random(_min, _max) {
+            let value = Math.random() * (_max - _min) + _min;
+            return value;
+        }
         set(_x, _y) {
             this.x = _x;
             this.y = _y;

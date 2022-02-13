@@ -23,6 +23,12 @@ namespace Endabgabe {
         STRESSED
     }
 
+    export enum CUSTOMERMOOD {
+        HAPPY,
+        UNHAPPY,
+        HANGRY
+    }
+
     window.addEventListener("load", handleLoad);
 
     export let crc2: CanvasRenderingContext2D;
@@ -33,6 +39,7 @@ namespace Endabgabe {
     let staffCount: number = 3;
 
     export let staffs: Staff[] = [];
+    export let customers: Customer[] = [];
     export let ingredients: Food[] = [];
     export let order: string[] = [];
 
@@ -41,7 +48,7 @@ namespace Endabgabe {
         InitEverything();
         Action();
 
-        window.setInterval(update, 3);
+        window.setInterval(update, 30);
     }
 
     function drawBG(): void {
@@ -104,6 +111,12 @@ namespace Endabgabe {
         let staff: Staff = new Staff;
         staffs.push(staff);
         }
+
+        for (let i: number = 1; i <= staffCount; i++) {
+        let customer: Customer = new Customer;
+        customers.push(customer);
+    }
+
     }
 
     function Action(): void {
@@ -137,6 +150,11 @@ namespace Endabgabe {
             staff.move(1 / 50);
             staff.work();
             staff.draw();
+        }
+
+        for (let customer of customers) {
+            customer.move(1 / 50);
+            customer.draw();
         }
     }
 }

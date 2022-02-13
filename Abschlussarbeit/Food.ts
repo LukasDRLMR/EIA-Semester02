@@ -7,6 +7,7 @@ namespace Endabgabe {
         protected positionMat: Vector;
         protected positionDisplay: Vector;
         protected capacity: number;
+        protected maxCapacity: number;
 
         constructor() {
 //
@@ -19,7 +20,7 @@ namespace Endabgabe {
                 this.capacity -= 1;
             }
             if (_object == 2) {
-                this.capacity = 0;
+                this.capacity = this.maxCapacity;
             }
         }
     }

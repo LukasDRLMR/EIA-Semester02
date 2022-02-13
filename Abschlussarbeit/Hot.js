@@ -8,6 +8,7 @@ var Endabgabe;
             this.positionDisplay = new Endabgabe.Vector(1190, 800);
             this.positionMat = new Endabgabe.Vector(120, 900);
             this.capacity = 20;
+            this.maxCapacity = 20;
         }
         draw() {
             Endabgabe.crc2.save();

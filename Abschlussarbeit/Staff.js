@@ -52,6 +52,9 @@ var Endabgabe;
                 }
             }
             this.targeted = true;
+            setTimeout(() => {
+                this.targeted = false;
+            }, 5000);
         }
         work(_Pos) {
             if (this.state == Endabgabe.WORKSTATE.PAUSE && this.onMyWay == false) {

@@ -12,7 +12,7 @@ var Endabgabe;
                 this.capacity -= 1;
             }
             if (_object == 2) {
-                this.capacity = 0;
+                this.capacity = this.maxCapacity;
             }
         }
     }

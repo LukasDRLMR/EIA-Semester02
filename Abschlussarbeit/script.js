@@ -23,19 +23,26 @@ var Endabgabe;
         STAFFSTATE[STAFFSTATE["SLEEPING"] = 1] = "SLEEPING";
         STAFFSTATE[STAFFSTATE["STRESSED"] = 2] = "STRESSED";
     })(STAFFSTATE = Endabgabe.STAFFSTATE || (Endabgabe.STAFFSTATE = {}));
+    let CUSTOMERMOOD;
+    (function (CUSTOMERMOOD) {
+        CUSTOMERMOOD[CUSTOMERMOOD["HAPPY"] = 0] = "HAPPY";
+        CUSTOMERMOOD[CUSTOMERMOOD["UNHAPPY"] = 1] = "UNHAPPY";
+        CUSTOMERMOOD[CUSTOMERMOOD["HANGRY"] = 2] = "HANGRY";
+    })(CUSTOMERMOOD = Endabgabe.CUSTOMERMOOD || (Endabgabe.CUSTOMERMOOD = {}));
     window.addEventListener("load", handleLoad);
     let canvas = document.querySelector("canvas");
     Endabgabe.crc2 = canvas.getContext("2d");
     let imgData;
     let staffCount = 3;
     Endabgabe.staffs = [];
+    Endabgabe.customers = [];
     Endabgabe.ingredients = [];
     Endabgabe.order = [];
     function handleLoad() {
         drawBG();
         InitEverything();
         Action();
-        window.setInterval(update, 3);
+        window.setInterval(update, 30);
     }
     function drawBG() {
         Endabgabe.crc2.fillStyle = "rgb(201, 142, 99)";
@@ -89,6 +96,10 @@ var Endabgabe;
             let staff = new Endabgabe.Staff;
             Endabgabe.staffs.push(staff);
         }
+        for (let i = 1; i <= staffCount; i++) {
+            let customer = new Endabgabe.Customer;
+            Endabgabe.customers.push(customer);
+        }
     }
     function Action() {
         for (let item of Endabgabe.ingredients) {
@@ -118,6 +129,10 @@ var Endabgabe;
             staff.move(1 / 50);
             staff.work();
             staff.draw();
+        }
+        for (let customer of Endabgabe.customers) {
+            customer.move(1 / 50);
+            customer.draw();
         }
     }
 })(Endabgabe || (Endabgabe = {}));

@@ -11,12 +11,6 @@ var Endabgabe;
             offset.scale(_timeslice);
             this.position.add(offset);
         }
-        clicked() {
-            //
-        }
-        work(_Pos) {
-            //
-        }
     }
     Endabgabe.Human = Human;
 })(Endabgabe || (Endabgabe = {}));
