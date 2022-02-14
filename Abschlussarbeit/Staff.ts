@@ -1,14 +1,26 @@
 namespace Endabgabe {
+
+    export enum WORKSTATE {
+        CASH,
+        TOPPING,
+        PREPARATION,
+        PAUSE
+    }
+
+    export enum STAFFSTATE {
+        WORKING,
+        SLEEPING,
+        STRESSED
+    }
+
     export class Staff extends Human {
         public state: WORKSTATE;
-        public mood: STAFFSTATE;
-        public targeted: boolean;
+        private mood: STAFFSTATE;
+        private targeted: boolean;
         private pauseStation: Vector;
         private cashStation: Vector;
         private prepStation: Vector;
         private toppingStation: Vector;
-        private moodState: string[] = ["rgb(0, 0, 255", "rgb(120, 0, 90)", "rgb(120, 0, 25)", "rgb(0, 130, 173)"];
-
 
         constructor() {
             super();
@@ -16,7 +28,7 @@ namespace Endabgabe {
             this.position = new Vector(crc2.canvas.width * 0.25, crc2.canvas.height - Math.floor(Math.random() * 100));
             this.velocity = new Vector(0, 0);
             this.targeted = false;
-            this.state = 1;
+            this.state = 0;
             for (let n: number = 0; n < staffs.length; n++) {
                 if (this.state == staffs[n].state) {
                     this.state++;
@@ -24,10 +36,10 @@ namespace Endabgabe {
             }
             this.mood = STAFFSTATE.WORKING;
             this.onMyWay = false;
-            this.pauseStation = new Vector(700, 930);
-            this.cashStation = new Vector(1000, 900);
+            this.pauseStation = new Vector(900, 930);
+            this.cashStation = new Vector(980, 900);
             this.prepStation = new Vector(350, 400);
-            this.toppingStation = new Vector(850, 350);
+            this.toppingStation = new Vector(900, 300);
         }
 
         public draw(): void {
@@ -36,16 +48,16 @@ namespace Endabgabe {
             this.path.arc(this.position.x, this.position.y, 50, 0, 2 * Math.PI);
             crc2.closePath();
             if (this.mood == STAFFSTATE.WORKING) {
-                crc2.fillStyle = this.moodState[0];
+                crc2.fillStyle = "rgb(0, 0, 255";
             }
             if (this.mood == STAFFSTATE.SLEEPING) {
-                crc2.fillStyle = this.moodState[1];
+                crc2.fillStyle = "rgb(120, 0, 90)";
             }
             if (this.mood == STAFFSTATE.STRESSED) {
-                crc2.fillStyle = this.moodState[2];
+                crc2.fillStyle = "rgb(120, 0, 25)";
             }
             if (this.targeted == true) {
-                crc2.fillStyle = this.moodState[3];
+                crc2.fillStyle = "rgb(0, 130, 173)";
             }
             crc2.fill(this.path);
             crc2.stroke(this.path);
@@ -64,10 +76,10 @@ namespace Endabgabe {
             this.targeted = true;
             setTimeout((): void => {
                 this.targeted = false;
-            },         5000);
+            }, 5000);
         }
 
-        public work(_Pos?: Vector): void {
+        public work(): void {
             if (this.state == WORKSTATE.PAUSE && this.onMyWay == false) {
                 this.velocity = Vector.getDifference(this.pauseStation, this.position);
                 this.onMyWay = true;
@@ -100,20 +112,6 @@ namespace Endabgabe {
                 this.velocity = new Vector(0, 0);
                 this.onMyWay = false;
             }
-            // if (stop != undefined) {
-            //     if (Math.floor(this.position.x - 50) == stop.x) {
-            //         this.velocity = new Vector(0, 0);
-            //     }
-            // }
-            // if (_Pos) {
-            //     stop = _Pos;
-            //     if (this.onMyWay == false) {
-            //         this.velocity = Vector.getDifference(new Vector(_Pos.x - 50, _Pos.y), this.position);
-            //         this.onMyWay = true;
-            //     }
-            // }
-            // console.log(stop);
-
         }
     }
 }

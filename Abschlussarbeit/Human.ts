@@ -1,13 +1,11 @@
 namespace Endabgabe {
     export abstract class Human {
         public path: Path2D = new Path2D();
-        public state: WORKSTATE;
         protected position: Vector;
         protected velocity: Vector;
         protected onMyWay: boolean;
 
         constructor() {
-
         }
 
         public abstract draw(): void;

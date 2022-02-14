@@ -2,7 +2,6 @@ namespace Endabgabe {
     export abstract class Food {
         public path: Path2D = new Path2D();
         public pathGround: Path2D = new Path2D();
-        protected position: Vector;
         protected positionPrep: Vector;
         protected positionMat: Vector;
         protected positionDisplay: Vector;

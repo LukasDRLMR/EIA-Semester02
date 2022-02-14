@@ -4,7 +4,7 @@ var Endabgabe;
     class Build extends Endabgabe.Food {
         constructor() {
             super();
-            this.position = new Endabgabe.Vector(Endabgabe.crc2.canvas.width * 0.38, Endabgabe.crc2.canvas.height * 0.5);
+            this.positionPrep = new Endabgabe.Vector(Endabgabe.crc2.canvas.width * 0.38, Endabgabe.crc2.canvas.height * 0.5);
         }
         clicked() {
             Endabgabe.order = [];
@@ -12,7 +12,7 @@ var Endabgabe;
         draw() {
             Endabgabe.crc2.save();
             Endabgabe.crc2.beginPath();
-            this.path.arc(this.position.x, this.position.y, 150, 0, 2 * Math.PI);
+            this.path.arc(this.positionPrep.x, this.positionPrep.y, 150, 0, 2 * Math.PI);
             Endabgabe.crc2.closePath();
             Endabgabe.crc2.fillStyle = "rgb(255, 255, 255)";
             Endabgabe.crc2.fill(this.path);

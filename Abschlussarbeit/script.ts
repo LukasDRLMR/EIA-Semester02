@@ -10,25 +10,6 @@ namespace Endabgabe {
         PLAY
     }
 
-    export enum WORKSTATE {
-        CASH,
-        TOPPING,
-        PAUSE,
-        PREPARATION
-    }
-
-    export enum STAFFSTATE {
-        WORKING,
-        SLEEPING,
-        STRESSED
-    }
-
-    export enum CUSTOMERMOOD {
-        HAPPY,
-        UNHAPPY,
-        HANGRY
-    }
-
     window.addEventListener("load", handleLoad);
 
     export let crc2: CanvasRenderingContext2D;

@@ -48,7 +48,7 @@ var Endabgabe;
                     Endabgabe.order.push("Salad");
                     for (let l = 0; l < Endabgabe.staffs.length; l++) {
                         if (Endabgabe.staffs[l].state == Endabgabe.WORKSTATE.TOPPING) {
-                            Endabgabe.staffs[l].work(this.positionPrep);
+                            // staffs[l].work(this.positionPrep);
                         }
                     }
                 }

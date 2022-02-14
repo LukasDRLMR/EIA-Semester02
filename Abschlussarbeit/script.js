@@ -10,25 +10,6 @@ var Endabgabe;
         GAMESTATE[GAMESTATE["INIT"] = 0] = "INIT";
         GAMESTATE[GAMESTATE["PLAY"] = 1] = "PLAY";
     })(GAMESTATE = Endabgabe.GAMESTATE || (Endabgabe.GAMESTATE = {}));
-    let WORKSTATE;
-    (function (WORKSTATE) {
-        WORKSTATE[WORKSTATE["CASH"] = 0] = "CASH";
-        WORKSTATE[WORKSTATE["TOPPING"] = 1] = "TOPPING";
-        WORKSTATE[WORKSTATE["PAUSE"] = 2] = "PAUSE";
-        WORKSTATE[WORKSTATE["PREPARATION"] = 3] = "PREPARATION";
-    })(WORKSTATE = Endabgabe.WORKSTATE || (Endabgabe.WORKSTATE = {}));
-    let STAFFSTATE;
-    (function (STAFFSTATE) {
-        STAFFSTATE[STAFFSTATE["WORKING"] = 0] = "WORKING";
-        STAFFSTATE[STAFFSTATE["SLEEPING"] = 1] = "SLEEPING";
-        STAFFSTATE[STAFFSTATE["STRESSED"] = 2] = "STRESSED";
-    })(STAFFSTATE = Endabgabe.STAFFSTATE || (Endabgabe.STAFFSTATE = {}));
-    let CUSTOMERMOOD;
-    (function (CUSTOMERMOOD) {
-        CUSTOMERMOOD[CUSTOMERMOOD["HAPPY"] = 0] = "HAPPY";
-        CUSTOMERMOOD[CUSTOMERMOOD["UNHAPPY"] = 1] = "UNHAPPY";
-        CUSTOMERMOOD[CUSTOMERMOOD["HANGRY"] = 2] = "HANGRY";
-    })(CUSTOMERMOOD = Endabgabe.CUSTOMERMOOD || (Endabgabe.CUSTOMERMOOD = {}));
     window.addEventListener("load", handleLoad);
     let canvas = document.querySelector("canvas");
     Endabgabe.crc2 = canvas.getContext("2d");

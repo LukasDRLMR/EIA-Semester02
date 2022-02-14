@@ -4,20 +4,20 @@ var Endabgabe;
     class Döner extends Endabgabe.Food {
         constructor() {
             super();
-            this.position = new Endabgabe.Vector(480, 80);
+            this.positionPrep = new Endabgabe.Vector(480, 80);
             this.positionDisplay = new Endabgabe.Vector(550, 40);
             this.capacity = 10;
         }
         draw() {
             Endabgabe.crc2.save();
             Endabgabe.crc2.beginPath();
-            this.path.arc(this.position.x, this.position.y, 40, 0, 1.2 * Math.PI);
+            this.path.arc(this.positionPrep.x, this.positionPrep.y, 40, 0, 1.2 * Math.PI);
             Endabgabe.crc2.closePath();
             Endabgabe.crc2.fillStyle = "rgb(180, 100, 0)";
             Endabgabe.crc2.fill(this.path);
             Endabgabe.crc2.stroke(this.path);
             Endabgabe.crc2.fillStyle = "black";
-            Endabgabe.crc2.fillText("Döner", this.position.x, this.position.y + 55);
+            Endabgabe.crc2.fillText("Döner", this.positionPrep.x, this.positionPrep.y + 55);
             Endabgabe.crc2.restore();
             Endabgabe.crc2.save();
             Endabgabe.crc2.strokeStyle = "white";

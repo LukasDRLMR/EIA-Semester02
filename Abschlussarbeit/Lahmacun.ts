@@ -4,7 +4,7 @@ namespace Endabgabe {
         constructor() {
             super();
 
-            this.position = new Vector(805, 80);
+            this.positionPrep = new Vector(805, 80);
             this.positionDisplay = new Vector(870, 40);
             this.capacity = 10;
         }
@@ -12,13 +12,13 @@ namespace Endabgabe {
         public draw(): void {
             crc2.save();
             crc2.beginPath();
-            this.path.arc(this.position.x, this.position.y, 40, 0, 2 * Math.PI);
+            this.path.arc(this.positionPrep.x, this.positionPrep.y, 40, 0, 2 * Math.PI);
             crc2.closePath();
             crc2.fillStyle = "rgb(180, 100, 100)";
             crc2.fill(this.path);
             crc2.stroke(this.path);
             crc2.fillStyle = "black";
-            crc2.fillText("Lahmacun", this.position.x, this.position.y + 55);
+            crc2.fillText("Lahmacun", this.positionPrep.x, this.positionPrep.y + 55);
             crc2.restore();
 
             crc2.save();

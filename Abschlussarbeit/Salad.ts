@@ -52,7 +52,7 @@ namespace Endabgabe {
                     order.push("Salad");
                     for (let l: number = 0; l < staffs.length; l++) {
                         if (staffs[l].state == WORKSTATE.TOPPING) {
-                            staffs[l].work(this.positionPrep);
+                            // staffs[l].work(this.positionPrep);
                         }
                     }
                 }
